@@ -1,107 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FredBoat</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: #181818;
-            color: white;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELona Music Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      /* Ensure full height */
+      overflow: hidden;
+      /* Prevent scrolling */
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      background-color: #181818;
+      color: white;
+    }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background: #1c1c1c;
-        }
+    /* Header Style */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: #1c1c1c;
+      z-index: 2;
+    }
 
-        header img {
-            height: 40px;
-        }
+    header img {
+      height: 80px;
+    }
 
-        header nav {
-            display: flex;
-            gap: 20px;
-        }
+    header .name {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00d8ff;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+    }
 
-        header nav a {
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-        }
+    /* Main section */
+    main {
+      text-align: center;
+      margin-top: 300px;
+      /* Adds margin to move the text further down */
+      padding: 50px 20px;
+      position: relative;
+      z-index: 3;
+    }
 
-        .login-button {
-            padding: 8px 20px;
-            border: 2px solid white;
-            border-radius: 20px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-        }
+    main h1 {
+      font-size: 2.5rem;
+    }
 
-        main {
-            text-align: center;
-            padding: 50px 20px;
-            background: #181818;
-            color: white;
-        }
+    main p {
+      margin: 10px 0 30px;
+      font-size: 1.2rem;
+    }
 
-        main h1 {
-            font-size: 2.5rem;
-        }
+    .invite-button,
+    .discord-button {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #00d8ff;
+      color: #181818;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      margin: 10px;
+    }
 
-        main p {
-            margin: 10px 0 30px;
-            font-size: 1.2rem;
-        }
+    /* Full-screen Starry Background */
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      animation: moveStars 50s linear infinite;
+      z-index: 0;
+    }
 
-        .invite-button {
-            display: inline-block;
-            padding: 15px 30px;
-            background-color: #00d8ff;
-            color: #181818;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            font-size: 1.2rem;
-        }
+    @keyframes moveStars {
+      0% {
+        background-position: 0 0;
+      }
 
-        .waves {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-    </style>
+      100% {
+        background-position: -5000px -5000px;
+      }
+    }
+
+    /* Bot logo style */
+    .bot-logo {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    .bot-logo img {
+      width: 380px;
+      height: 254px;
+    }
+
+    /* Falling Petals */
+    .falling-petals {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .falling-petals img {
+      position: absolute;
+      width: 30px;
+      animation: fall 10s infinite linear;
+      opacity: 0.8;
+    }
+
+    .falling-petals img:nth-child(odd) {
+      animation-duration: 12s;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Shooting star animation */
+    .shooting-star {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 2px;
+      background-color: #ffeb3b;
+      border-radius: 50%;
+      animation: shoot 3s linear infinite;
+      z-index: 2;
+    }
+
+    @keyframes shoot {
+      0% {
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        top: 150vh;
+        left: 120%;
+        transform: translateX(-50%) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .waves {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <img src="https://via.placeholder.com/40" alt="Logo">
-        <nav>
-            <a href="#premium">Premium</a>
-            <a href="#docs">Docs</a>
-            <a href="#commands">Commands</a>
-            <a href="#music-room">Music Room</a>
-        </nav>
-        <a href="#login" class="login-button">Login</a>
-    </header>
-    <main>
-        <h1>Play high quality music<br>in your Discord server for free.</h1>
-        <p>Rocking over 7 million discord servers.</p>
-        <a href="#invite" class="invite-button">Invite To Server</a>
-    </main>
-    <div class="waves">
-        <!-- Add SVG or animated background here if needed -->
-    </div>
+  <div class="stars"></div>
+
+  <header>
+    <div class="name">Elona Music Bot</div>
+  </header>
+
+  <div class="falling-petals">
+    <!-- Adding multiple petals with animation -->
+    <img src="https://cdn.pixabay.com/animation/2022/10/27/12/57/12-57-22-874_512.gif" style="top: 0; left: 20%;">
+    <img src="https://cdn.pixabay.com/animation/2022/10/27/12/57/12-57-22-874_512.gif" style="top: -50px; left: 60%;">
+    <img src="https://cdn.pixabay.com/animation/2022/10/27/12/57/12-57-22-874_512.gif" style="top: -100px; left: 80%;">
+    <img src="https://cdn.pixabay.com/animation/2022/10/27/12/57/12-57-22-874_512.gif" style="top: 0; right: 20%;">
+    <img src="https://cdn.pixabay.com/animation/2022/10/27/12/57/12-57-22-874_512.gif" style="top: -50px; right: 40%;">
+  </div>
+
+  <div class="bot-logo">
+    <img src="anime-girl-mascot-logo-Graphics-79872002-1-1-580x387-removebg-preview.png" alt="Bot Logo">
+  </div>
+
+  <main>
+    <h1>Play high quality music<br>in your Discord server for free.</h1>
+    <p>Rocking over 7 million discord servers.</p>
+    <a href="https://discord.com/oauth2/authorize?client_id=1307012208026189876&scope=bot+applications.commands&permissions=515396455521"
+      class="invite-button">Invite To Server</a>
+    <br>
+    <a href="https://discord.gg/YrKA8bBNHq" class="discord-button" target="_blank">Join Discord</a>
+  </main>
+
+  <div class="waves">
+    <!-- Add SVG or additional animations here if needed -->
+  </div>
+
+  <!-- Shooting Star Animation -->
+  <div class="shooting-star"></div>
+
 </body>
+
 </html>
